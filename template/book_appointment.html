@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot - User Input</title>
+    <link rel="stylesheet" type="text/css" href="/static/h_style.css">
+</head>
+<body>
+
+
+    <div id="firRec">
+        <div id="subm">
+            <button type="submit"> Diabetes</button>
+            <a href="h_disease.html" class="subd">
+                <!-- check style for the above -->
+                <div class="heartd"> Heart Disease</div>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div id="secRec">
+        
+        <div id="welcome">WELCOME TO HEALTHCHECK</div>
+
+        <div class="chat-container">
+            <div id="good-afternoon" class="fade-in">Hi!, Good Afternoon</div>
+
+            <div id="format" class="fade-in">Kindly answer these questions in the format below</div>
+
+            <div id="format1" class="fade-in">Name, Age, DateOfBirth, Sex, Residential Address</div>
+
+            <div class="chat-box" id="chat-box">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <input type="text" id="user-input" placeholder="Type a message..." required>
+            
+            <iconify-icon icon="carbon:send" id="iconify" onclick="sendMessage()">
+
+                
+            </iconify-icon>
+            
+            
+        </div>
+        <script src="/static/diabetes.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    </div>
+    
+</body>
+</html>

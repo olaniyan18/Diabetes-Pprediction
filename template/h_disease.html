@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcheck Bot</title>
+    <link rel="stylesheet" type="text/css" href="/static/h_style.css">
+
+</head>
+<body>
+    <form action="/predict_heart" method="post">
+         <!-- first section -->
+         
+        <div id="firRec">
+            <div id="subm">
+                <a href="homepage.html" class="subd">
+                    <div id="diab" type="submit"> Diabetes</div>
+                </a>
+                <button id="heartd1" type="submit"> Heart Disease</button>
+            </div>
+        </div>
+
+
+        <!-- second section -->
+        <div id="secRec">
+            
+            <div id="welcome">WELCOME TO HEALTHCHECK</div>
+ 
+            <input class="inprec1" id="top1" type="text" name="aa" placeholder="Age" required>
+
+            <select class="inprec1" id="top2" name="bb">
+                <option hidden>Sex</option>
+                <option value="0" name = 'Female'>Female</option>
+                <option value="1" name = 'Male'>Male</option>
+                
+            </select>
+
+            <select class="inprec1" id="top3" name="cc">
+                <option hidden>Chest Pain</option>
+                <option value="0" name = 'typical angina'>Typical angina</option>
+                <option value="1" name = 'atypical angina'>Atypical angina</option>
+                <option value="2" name = 'non-anginal'>Non-anginal</option>
+                <option value="3" name = 'asymptomatic'>Asymptomatic</option>
+                
+            </select>
+
+            <input class="inprec1" id="top4" type="text" name="dd" placeholder="Systolic Blood Pressure" required>
+
+            <input class="inprec1" id="top5" type="text" name="ee" placeholder="Cholesterol Level" required>
+
+            <select class="inprec2" id="top1" name="ff">
+                <option hidden>Fasting Blood Sugar</option>
+                <option value="0" name = 'no fbs'>No Blood Sugar</option>
+                <option value="1" name = 'fbs'>Blood suagr is present</option>
+                
+            </select>
+
+            <select class="inprec2" id="top2" name="gg">
+                <option hidden>Electrocardiographic Results</option>
+                <option value="0" name = 'normal'>Normal</option>
+                <option value="1" name = 'stt abnormality'>Stt abnormality</option>
+                <option value="2" name = 'lv hypertrophy'>lv hypertrophy</option>
+                
+            </select>
+
+            <input class="inprec2" id="top3" type="text" name="hh" placeholder="Heart Rate" required>
+
+            <select class="inprec2" id="top4" name="ii">
+                <option hidden>Exercise-Induced Angina</option>
+                <option value="0" name = 'False'>False</option>
+                <option value="1" name = 'True'>True</option>
+                
+            </select>
+
+            <input class="inprec3" id="top1" type="text" name="jj" placeholder="Oldpeak" required>
+
+            <select class="inprec3" id="top2" name="kk">
+                <option hidden>Slope</option>
+                <option value="0" name = 'normal'>Downsloping</option>
+                <option value="1" name = 'fixed defect'> Flat</option>
+                <option value="2" name = 'fixed defect'>Upsloping</option>
+
+            </select>
+            
+            <select class="inprec3" id="top3" name="ll">
+                <option hidden>Coronary Arteries</option>
+                <option value="0" name = 'no'>No major blockage</option>
+                <option value="1" name = 'one'> One major blockage(e.g LAD)</option>
+                <option value="2" name = 'two'>Two major blockage(e.g LMCA,LAD)</option>
+                <option value="3" name = 'three'>Three major blockage(e.g LMCA,LAD, LCX)</option>
+                <option value="4" name = 'four'>All four major blockage(e.g LMCA,LAD, LCX and RCA)</option>
+
+            </select> 
+
+            <select class="inprec3" id="top4" name="mm">
+                <option hidden>Generic Blood Disorder</option>
+                <option value="0" name = 'normal'>Normal</option>
+                <option value="1" name = 'fixed defect'>Fixed Defect</option>
+                <option value="1" name = 'fixed defect'>Reversible Defect</option>
+
+            </select>    
+
+            <!-- Predict button -->
+            <button id="myBtn">Test Result</button>
+
+            <p id="response">
+
+                {% if data == 0 %}
+                     Well, you are lucky
+                {% elif data == 1 %}
+                    You are likely to have Heart Disease     
+                {% endif %}
+            </p>
+
+            <!-- pop up message, if data == 0  -->
+            <div id="myModal" class="modal">
+                <div class="modal-content" >
+                   <p style="font-family: Nunito; text-align:center;">Thank you for using the service.</p>
+                   <b>
+                        <p style="font-family: Nunito; text-align:center;">Kindly rate the service.</p>
+                    </b>
+                   <button id="option1Btn">Not Now</button>
+                   <button id="option2Btn">Rate</button>
+                </div>
+            </div>
+
+            <!-- pop up message, if data == 1  -->
+            <div id="myModal1" class="modal1">
+                <div class="modal-content" >
+                   <p style="font-family: Nunito;">Would you like me to recommend some drugs that could help?</p>
+                   
+                    <button id="noBtn">No</button>
+                    <button id="yesBtn">Yes</button> 
+                    <button id="appointBtn">Book an appointment</button>
+                    
+                </div>
+            </div>
+
+
+            <!-- javascript code -->
+                <script>
+                    
+                        
+                    document.addEventListener("DOMContentLoaded", function() {
+                       // data value parsed from the backend 
+                        var data = '{{ data }}';
+
+                        var btn = document.getElementById("myBtn");
+                        var option1Btn = document.getElementById("option1Btn");
+                        var option2Btn = document.getElementById("option2Btn");
+                        var noBtn = document.getElementById("noBtn");
+                        var yesBtn = document.getElementById("yesBtn");
+                        var appointBtn = document.getElementById("appointBtn");
+                        var modal = document.getElementById("myModal");
+                        var modal1 = document.getElementById("myModal1");
+
+
+                        //pop up to show if conditions are met
+                        function showPopUp() {
+
+                            if (data === '0') {
+                                console.log("Data: " + data);
+                                setTimeout(function() {
+                                    modal.style.display = "block";
+                                }, 1000);
+                            } else if (data === '1') {
+                                console.log("Data: " + data);
+                                setTimeout(function() {
+                                    modal1.style.display = "block";
+                                }, 1000);
+                            }
+                        }
+
+                        //when button is clicked, show popup
+                        btn.addEventListener('click', function() {
+                            showPopUp();
+                        });
+
+
+
+                       // window.onclick = function(event) {
+                         //   if (event.target == modal) {
+                           //     modal.style.display = "none";
+                            //}
+                        //}
+
+
+                        //when not now is clicked, do not show popup
+                        option1Btn.onclick = function() {
+                        // Code for option 1
+                            modal.style.display = "none";
+                            
+                        }
+
+                        //when rate is clicked, do not show popup
+                        option2Btn.onclick = function() {
+                        // Code for option 2
+                            modal.style.display = "none";
+                        }
+
+
+                        //when no is clicked, show the first popup
+
+                        noBtn.onclick = function() {
+                            // Code for option 2
+                                modal1.style.display = "none";
+                                modal.style.display = "block";
+                                
+                            }
+
+                        //when yes is clicked, go to the next page
+                        yesBtn.onclick = function() {
+                            // Code for option 2
+                              window.location.href = 'recommend_heart_drugs.html'
+                            }   
+                        
+                        //when appoint button is clicked, go to another page
+                        appointBtn.onclick = function() {
+                            // Code for option 2
+                                window.location.href = 'book_appointment.html'
+                            } 
+
+            
+
+                       // window.onclick = function(event) {
+                         //   if (event.target == popup1 || event.target == popup2) {
+                           //     popup1.style.display = "none";
+                             //   popup2.style.display = "none";
+                            //}
+                        //}
+
+
+                    })
+
+                     
+                </script>
+               
+        </div>
+    </form>
+</body>
+</html>

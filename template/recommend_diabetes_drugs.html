@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/h_style.css">
+</head>
+<body>
+    <div id="firRec">
+        <div id="subm">
+            <button type="submit"> Diabetes</button>
+            <a href="h_disease.html" class="subd">
+                <!-- check style for the above -->
+                <div class="heartd"> Heart Disease</div>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div id="secRec">
+        
+        <div id="welcome">WELCOME TO HEALTHCHECK</div>
+
+        <ul>
+            <li id="recommend_heart">
+                1.Ace Inhibitors
+            </li>
+            <li id="recommend_heart1">
+                2. Beta blockers
+            </li>
+            <li id="recommend_heart2">
+                3. Calcium Channel
+            </li>
+        </ul>
+        <div id="myModal1" class="modal1">
+            <div class="modal-content" >
+               <p style="font-family: Nunito;">Book an appointment with the doctor?</p>
+               
+               <button id="option1Btn">No</button>
+               <button id="option2Btn">Yes</button>
+                
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                var modal = document.getElementById("myModal1"); 
+                var option1Btn = document.getElementById("option1Btn");
+                var option2Btn = document.getElementById("option2Btn");
+
+                window.onload = function(){
+                    modal.style.display = 'block';
+                }
+
+                option1Btn.onclick = function() {
+                    // Code for option 1
+                        modal.style.display = "none";
+                        
+                    }
+
+                option2Btn.onclick = function() {
+                    window.location.href = 'book_appointment.html'
+                }
+            });
+        </script>
+    </div>    
+</body>
+</html>

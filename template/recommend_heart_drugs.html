@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcheck Bot</title>
+    <link rel="stylesheet" type="text/css" href="/static/h_style.css">
+</head>
+<body>
+    <!-- first -->
+     <div id="firRec">
+            <div id="subm">
+                <a href="homepage.html" class="subd">
+                    <div id="diab" type="submit"> Diabetes</div>
+                </a>
+                <button id="heartd1" type="submit"> Heart Disease</button>
+            </div>
+        </div>
+
+    <!-- second section -->
+
+    <div id="secRec">
+        <!-- text -->
+        <div id="welcome">WELCOME TO HEALTHCHECK</div>
+
+        <!-- list of the drugs to use -->
+        <ul>
+            <li id="recommend_heart">
+                Ace Inhibitors
+            </li>
+            <li id="recommend_heart1">
+                Beta blockers
+            </li>
+            <li id="recommend_heart2">
+                Calcium Channel
+            </li>
+        </ul>
+
+        <!-- pop up message -->
+        <div id="myModal1" class="modal1">
+            <div class="modal-content" >
+               <p style="font-family: Nunito;">Book an appointment with the doctor?</p>
+               
+               <button id="option1Btn">No</button>
+               <button id="option2Btn">Yes</button>
+                
+            </div>
+        </div>
+
+        <!-- javascript code -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                var modal = document.getElementById("myModal1"); 
+                var option1Btn = document.getElementById("option1Btn");
+                var option2Btn = document.getElementById("option2Btn");
+                
+                setTimeout(function() {
+                    window.onload = function(){
+                        modal.style.display = 'block';}
+                    }, 50000)
+
+                    //when no button is clicked, do not show pop up
+                option1Btn.onclick = function() {
+                    // Code for option 1
+                        modal.style.display = "none";
+                        
+                    }
+                    // when yes button is clicked, go to the next page
+                option2Btn.onclick = function() {
+                    window.location.href = 'book_appointment.html'
+                }
+            });
+        </script>
+
+    </div>  
+    
+    
+</body>
+</html>

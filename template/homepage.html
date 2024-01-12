@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcheck Bot</title>
+    <link rel="stylesheet" type="text/css" href="/static/h_style.css">
+</head>
+<body>
+    <form action="/predict" method="post">
+        <!-- // first page -->
+        <!-- first section -->
 
+        <div id="firRec">
+            <div id="subm">
+                <button type="submit"> Diabetes</button>
+                <a href="h_disease.html" class="subd">
+                    <!-- check style for the above -->
+                    <div class="heartd"> Heart Disease</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- second section -->
+
+        <div id="secRec">
+            
+            <div id="welcome">WELCOME TO HEALTHCHECK</div>
+ 
+            <input class="inprec4" id="top1" type="text" name="a" placeholder="no of pregnancies" required>
+
+            <input class="inprec4" id="top2" type="text" name="b" placeholder="Glucose Level" required>
+
+            <input class="inprec4" id="top3" type="text" name="c" placeholder="Diastolic Blood pressure" required>
+
+            <input class="inprec4" id="top4" type="text" name="d" placeholder="Skin Thickness" required>
+
+            <input class="inprec5" id="top1" type="text" name="e" placeholder="Insulin Level" required>
+
+            <input class="inprec5" id="top2" type="text" name="f" placeholder="Body mass index" required>
+
+            <input class="inprec5" id="top3" type="text" name="g" placeholder="DiabetesPedigreeFunction" required>
+
+            <input class="inprec5" id="top4" type="text" name="h" placeholder="Age" required>
+
+            <!-- Predict button -->
+
+            <button id="myBtn1">Test Result</button>
+
+            <p id="response1">
+                
+                {% if data == 0 %}
+                     Well, you are lucky
+                {% elif data == 1 %}
+                    You are likely to have diabetes     
+                {% endif %}
+            </p>
+
+
+            <div id="myModal" class="modal">
+                <div class="modal-content" >
+                   <p style="font-family: Nunito; text-align:center;">Thank you for using the service.</p>
+                   <b>
+                        <p style="font-family: Nunito; text-align:center;">Kindly rate the service.</p>
+                    </b>
+                   <button id="option1Btn">Not Now</button>
+                   <button id="option2Btn">Rate</button>
+                </div>
+            </div>
+
+
+            <div id="myModal1" class="modal1">
+                <div class="modal-content" >
+                   <p style="font-family: Nunito;">Would you like me to recommend some drugs that could help?</p>
+                   
+                    <button id="noBtn">No</button>
+                    <button id="yesBtn">Yes</button> 
+                    <button id="appointBtn">Book an appointment</button>
+                    
+                </div>
+            </div>
+       
+
+                <script>
+                    
+                        
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var data = '{{ data }}';
+
+                        var btn = document.getElementById("myBtn1");
+                        var option1Btn = document.getElementById("option1Btn");
+                        var option2Btn = document.getElementById("option2Btn");
+                        var noBtn = document.getElementById("noBtn");
+                        var yesBtn = document.getElementById("yesBtn");
+                        var appointBtn = document.getElementById("appointBtn");
+                        var popup1 = document.getElementById("popup1");
+                        var popup2 = document.getElementById("popup2");
+                        var closePopup1Btn = document.getElementById("closePopup1Btn");
+                        var closePopup2Btn = document.getElementById("closePopup2Btn");
+                        var modal = document.getElementById("myModal");
+                        var modal1 = document.getElementById("myModal1");
+
+                        function showPopUp() {
+                            
+
+                            if (data === '0') {
+                                console.log("Data: " + data);
+                                setTimeout(function() {
+                                    modal.style.display = "block";
+                                }, 1000);
+                            } else if (data === '1') {
+                                console.log("Data: " + data);
+                                setTimeout(function() {
+                                    modal1.style.display = "block";
+                                }, 1000);
+                            }
+                        }
+
+                        btn.addEventListener('click', function() {
+                            showPopUp();
+                        });
+
+
+
+
+                        // span.onclick = function() {
+                        //     modal.style.display = "none";
+                        // }
+
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+
+                        option1Btn.onclick = function() {
+                        // Code for option 1
+                            modal.style.display = "none";
+                            //popup1.style.display = "block";
+                        }
+
+                        option2Btn.onclick = function() {
+                        // Code for option 2
+                            modal.style.display = "none";
+                            //popup2.style.display = "block";
+                        }
+
+                        noBtn.onclick = function() {
+                            // Code for option 2
+                                modal1.style.display = "none";
+                                modal.style.display = "block";
+                                //popup2.style.display = "block";
+                            }
+
+                        yesBtn.onclick = function() {
+                            // Code for option 2
+                              window.location.href = 'recommend_diabetes_drugs.html'
+                            }   
+                        
+                        appointBtn.onclick = function() {
+                            // Code for option 2
+                                window.location.href = 'book_appointment.html'
+                            } 
+
+                        closePopup1Btn.onclick = function() {
+                            popup1.style.display = "none";
+                        }
+
+                        closePopup2Btn.onclick = function() {
+                            popup2.style.display = "none";
+                        }
+
+                        window.onclick = function(event) {
+                            if (event.target == popup1 || event.target == popup2) {
+                                popup1.style.display = "none";
+                                popup2.style.display = "none";
+                            }
+                        }
+
+
+                    })
+
+                     
+                </script>
+    
+            
+        </div>
+    </form>
+</body>
+</html>
